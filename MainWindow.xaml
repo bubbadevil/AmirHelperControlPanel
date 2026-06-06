@@ -1,0 +1,226 @@
+﻿
+<Window x:Class="AmirHelperControlPanel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Amir's Helper Control Panel"
+        Height="760"
+        Width="1120"
+        WindowStartupLocation="CenterScreen"
+        Background="#0F172A">
+
+    <Grid>
+        <!-- Login Page -->
+        <StackPanel x:Name="LoginPage"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="420">
+
+            <TextBlock Text="Amir's Helper Login"
+                       Foreground="White"
+                       FontSize="32"
+                       FontWeight="Bold"
+                       TextAlignment="Center"
+                       Margin="0,0,0,25"/>
+
+            <TextBlock Text="Username / Discord ID" Foreground="#CBD5E1"/>
+            <TextBox x:Name="LoginDiscordIdBox" Height="35" Margin="0,5,0,15"/>
+
+            <TextBlock Text="Password" Foreground="#CBD5E1"/>
+            <PasswordBox x:Name="LoginPasswordBox" Height="35" Margin="0,5,0,20"/>
+            
+
+            <Button Content="Login" Height="40" Click="LoginButton_Click"/>
+
+            <TextBlock x:Name="LoginStatusText"
+                       Foreground="#FCA5A5"
+                       Margin="0,15,0,0"
+                       TextAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Main App -->
+        <Grid x:Name="MainAppGrid" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="#111827" Padding="20">
+                <StackPanel>
+                    <TextBlock Text="Amir's Helper"
+                               Foreground="White"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Margin="0,0,0,25"/>
+
+                    <Button x:Name="LogoutButton"
+                    Content="🚪 Logout"
+                    Click="Logout_Click"
+                    Height="45"
+                    Margin="0,0,0,20"/>
+
+                    <Button x:Name="DashboardButton" Content="🏠 Dashboard" Click="Dashboard_Click" Height="45" Margin="0,0,0,10"/>
+                    <Button x:Name="SettingsButton" Content="⚙ Settings / Logs" Click="Settings_Click" Height="45" Margin="0,0,0,10"/>
+                    <Button x:Name="RoleSyncButton" Content="📡 Role Sync" Click="RoleSync_Click" Height="45" Margin="0,0,0,10"/>
+                    <Button x:Name="ModerationButton" Content="🔨 Moderation" Click="Moderation_Click" Height="45" Margin="0,0,0,10"/>
+                    <Button x:Name="EmbedButton" Content="📝 Embeds" Click="EmbedBuilder_Click" Height="45" Margin="0,0,0,10"/>
+                    <Button x:Name="UsersButton" Content="👥 Users" Click="Users_Click" Height="45" Margin="0,0,0,10"/>
+                </StackPanel>
+            </Border>
+
+            <Grid Grid.Column="1" Margin="25">
+
+                <StackPanel x:Name="DashboardPage">
+                    <TextBlock Text="Dashboard" Foreground="White" FontSize="32" FontWeight="Bold"/>
+                    <TextBlock x:Name="LoggedInUserText"
+                               Text="Welcome to Amir's Helper Control Panel."
+                               Foreground="#CBD5E1"
+                               FontSize="16"
+                               Margin="0,10,0,0"/>
+                </StackPanel>
+
+                <StackPanel x:Name="SettingsPage" Visibility="Collapsed">
+                    <TextBlock Text="Settings / Logs" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                    <TextBlock Text="Log Server ID" Foreground="#CBD5E1"/>
+                    <TextBox x:Name="LogServerIdBox" Height="35" Margin="0,5,0,15"/>
+
+                    <TextBlock Text="General Log Channel ID" Foreground="#CBD5E1"/>
+                    <TextBox x:Name="GeneralLogChannelBox" Height="35" Margin="0,5,0,15"/>
+
+                    <TextBlock Text="Ban / Unban Log Channel ID" Foreground="#CBD5E1"/>
+                    <TextBox x:Name="BanLogChannelBox" Height="35" Margin="0,5,0,15"/>
+
+                    <Button Content="Save Settings" Width="160" Height="40" Click="SaveSettings_Click"/>
+
+                    <TextBlock x:Name="SettingsStatusText" Foreground="#A7F3D0" Margin="0,20,0,0"/>
+                </StackPanel>
+
+                <StackPanel x:Name="RoleSyncPage" Visibility="Collapsed">
+                    <TextBlock Text="Role Sync" Foreground="White" FontSize="32" FontWeight="Bold"/>
+                    <TextBlock Text="Role Sync page coming soon." Foreground="#CBD5E1" Margin="0,10,0,0"/>
+                </StackPanel>
+
+                <ScrollViewer x:Name="ModerationPage" Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock Text="Moderation" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                        <TextBlock Text="Ban User From All Discord Servers"
+                                   Foreground="#CBD5E1"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,15"/>
+
+                        <TextBlock Text="Discord ID" Foreground="#CBD5E1"/>
+                        <TextBox x:Name="BanUserIdBox" Height="35" Margin="0,5,0,15"/>
+
+                        <TextBlock Text="Reason" Foreground="#CBD5E1"/>
+                        <TextBox x:Name="BanReasonBox"
+                                 Height="100"
+                                 Margin="0,5,0,15"
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True"/>
+
+                        <Button Content="Ban User"
+                                Width="160"
+                                Height="40"
+                                Background="#991B1B"
+                                Foreground="White"
+                                Click="BanUserButton_Click"/>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <ScrollViewer x:Name="EmbedBuilderPage" Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock Text="Embed Builder" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                        <TextBlock Text="Channel ID" Foreground="#CBD5E1"/>
+                        <TextBox x:Name="ChannelIdBox" Height="35" Margin="0,5,0,15"/>
+
+                        <TextBlock Text="Title" Foreground="#CBD5E1"/>
+                        <TextBox x:Name="TitleBox" Height="35" Margin="0,5,0,15"/>
+
+                        <TextBlock Text="Logo / Image URL" Foreground="#CBD5E1"/>
+                        <TextBox x:Name="ImageUrlBox" Height="35" Margin="0,5,0,15"/>
+
+                        <TextBlock Text="Color" Foreground="#CBD5E1"/>
+                        <ComboBox x:Name="ColorBox" Height="35" Margin="0,5,0,15" SelectedIndex="0">
+                            <ComboBoxItem Content="Blue"/>
+                            <ComboBoxItem Content="Gold"/>
+                            <ComboBoxItem Content="Red"/>
+                            <ComboBoxItem Content="Green"/>
+                            <ComboBoxItem Content="Purple"/>
+                            <ComboBoxItem Content="Orange"/>
+                        </ComboBox>
+
+                        <TextBlock Text="Description / Discord Format" Foreground="#CBD5E1"/>
+                        <TextBox x:Name="DescriptionBox"
+                                 Height="250"
+                                 Margin="0,5,0,15"
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True"
+                                 VerticalScrollBarVisibility="Auto"/>
+
+                        <Button Content="Send Embed" Width="160" Height="40" Click="SendEmbedButton_Click"/>
+
+                        <TextBlock x:Name="EmbedStatusText" Foreground="#A7F3D0" Margin="0,20,0,0"/>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <ScrollViewer x:Name="UsersPage" Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock Text="Control Panel Users" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                        <DataGrid x:Name="ControlPanelUsersGrid"
+                                  Height="260"
+                                  AutoGenerateColumns="True"
+                                  Margin="0,0,0,20"/>
+
+                        <TextBlock Text="Name" Foreground="#CBD5E1"/>
+                        <TextBox x:Name="UserNameBox" Height="35" Margin="0,5,0,15"/>
+
+                        <TextBlock Text="Discord ID" Foreground="#CBD5E1"/>
+                        <TextBox x:Name="UserDiscordIdBox" Height="35" Margin="0,5,0,15"/>
+
+                        <TextBlock Text="Access Level" Foreground="#CBD5E1"/>
+                        <ComboBox x:Name="UserAccessLevelBox" Height="35" Margin="0,5,0,15" SelectedIndex="2">
+                            <ComboBoxItem Content="Owner"/>
+                            <ComboBoxItem Content="Admin"/>
+                            <ComboBoxItem Content="Restricted"/>
+                            <ComboBoxItem Content="Banned"/>
+                        </ComboBox>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Add / Update User"
+                                    Width="150"
+                                    Height="40"
+                                    Margin="0,0,10,0"
+                                    Click="AddOrUpdateUserButton_Click"/>
+
+                            <Button Content="Restrict User"
+                                    Width="130"
+                                    Height="40"
+                                    Margin="0,0,10,0"
+                                    Click="RestrictUserButton_Click"/>
+
+                            <Button Content="Ban From Control Panel"
+                                    Width="180"
+                                    Height="40"
+                                    Margin="0,0,10,0"
+                                    Background="#991B1B"
+                                    Foreground="White"
+                                    Click="BanControlPanelUserButton_Click"/>
+
+                            <Button Content="Reactivate User"
+                                    Width="140"
+                                    Height="40"
+                                    Click="ReactivateUserButton_Click"/>
+                        </StackPanel>
+
+                        <TextBlock x:Name="UsersStatusText" Foreground="#A7F3D0" Margin="0,20,0,0"/>
+                    </StackPanel>
+                </ScrollViewer>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
